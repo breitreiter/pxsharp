@@ -4,11 +4,27 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet package metadata -->
+    <PackageId>PxSharp</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>breitreiter</Authors>
+    <Description>Zero-dependency library for rendering pixel art in C# console applications using half-block characters.</Description>
+    <PackageTags>console;terminal;pixel-art;ansi;cli;tui</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/breitreiter/pxsharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/breitreiter/pxsharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="PxSharp.TerminalGui" />
     <InternalsVisibleTo Include="PxSharp.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

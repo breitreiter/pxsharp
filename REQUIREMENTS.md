@@ -48,7 +48,16 @@ This means a 200x100 pixel image renders as 200x50 characters.
 
 ### Transparency
 
-Handled per-cell based on the two pixels it represents:
+Transparency uses **color-key** (like GIF) rather than alpha channel. Pixels matching the transparent color are treated as transparent. Default is magenta (`#FF00FF`):
+
+```csharp
+PxSharpSettings.TransparentColor = (255, 0, 255);  // default magenta
+PxSharpSettings.TransparentColor = (255, 0, 0);    // use red instead
+```
+
+Why color-key instead of alpha? BMP alpha channel support is inconsistent across image editors—some save the 4th byte as padding, others as alpha, causing "transparent" areas to render as black. Color-key works reliably with any BMP.
+
+Rendering is handled per-cell based on the two pixels it represents:
 
 | Top | Bottom | Output |
 |-----|--------|--------|
@@ -125,15 +134,40 @@ PxSharp.ColorMode = ColorMode.Palette256; // force 256-color
 No separate package needed. Use `Print()` to output image rows alongside Spectre markup:
 
 ```csharp
-var robot = PxImage.Load("robot.bmp");
+var logo = PxImage.Load("pxsharp.bmp");
 
-robot.Print(0); AnsiConsole.MarkupLine("  [bold blue]myapp[/] v1.0");
-robot.Print(1); AnsiConsole.MarkupLine("  [grey]A cool tool[/]");
-robot.Print(2); AnsiConsole.MarkupLine("  [grey]MIT License[/]");
+logo.Print(0); AnsiConsole.MarkupLine("  [bold blue]myapp[/] v1.0");
+logo.Print(1); AnsiConsole.MarkupLine("  [grey]A cool tool[/]");
+logo.Print(2); AnsiConsole.MarkupLine("  [grey]MIT License[/]");
 ```
 
 `Print()` outputs raw ANSI to stdout without a newline, so you can append Spectre markup on the same line.
 Spectre's Canvas widget uses full blocks (1 char = 1 pixel)—our half-block approach is more compact.
+
+### Embedding Images as Resources
+
+For CLI tools and libraries, embed BMP files as assembly resources rather than shipping loose files:
+
+1. Add the BMP to your project and mark it as an embedded resource in your `.csproj`:
+
+```xml
+<ItemGroup>
+  <EmbeddedResource Include="logo.bmp" />
+</ItemGroup>
+```
+
+2. Load from the embedded resource stream:
+
+```csharp
+using System.Reflection;
+
+var assembly = Assembly.GetExecutingAssembly();
+using var stream = assembly.GetManifestResourceStream("MyApp.logo.bmp");
+var logo = PxImage.Load(stream);
+logo.WriteAnsi(Console.Out);
+```
+
+The resource name is `{DefaultNamespace}.{Filename}` — use `assembly.GetManifestResourceNames()` to list available resources if unsure.
 
 ### Design Principles
 

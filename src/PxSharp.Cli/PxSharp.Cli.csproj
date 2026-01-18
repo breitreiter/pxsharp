@@ -4,6 +4,10 @@
     <ProjectReference Include="..\PxSharp\PxSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="pxsharp.bmp" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>

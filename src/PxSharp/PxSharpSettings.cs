@@ -12,6 +12,13 @@ public static class PxSharpSettings
     public static ColorMode ColorMode { get; set; } = ColorMode.Auto;
 
     /// <summary>
+    /// Gets or sets the color key used for transparency.
+    /// Pixels matching this RGB value (ignoring alpha) are treated as transparent.
+    /// Default is magenta (#FF00FF).
+    /// </summary>
+    public static (byte R, byte G, byte B) TransparentColor { get; set; } = (255, 0, 255);
+
+    /// <summary>
     /// Gets the effective color mode, evaluating Auto if needed.
     /// Use this to determine what mode was actually selected.
     /// </summary>

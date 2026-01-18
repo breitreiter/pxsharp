@@ -1,3 +1,4 @@
+using System.Reflection;
 using PxSharp;
 
 if (args.Length == 0)
@@ -20,7 +21,7 @@ int Preview(string[] args)
 {
     if (args.Length == 0)
     {
-        Console.Error.WriteLine("Usage: pxsharp preview <file.bmp> [--256]");
+        Console.Error.WriteLine("Usage: pxsharp preview <file.bmp> [--256] [--transparent RRGGBB]");
         return 1;
     }
 
@@ -29,6 +30,21 @@ int Preview(string[] args)
 
     if (force256)
         PxSharpSettings.ColorMode = ColorMode.Palette256;
+
+    var transparentIndex = Array.IndexOf(args, "--transparent");
+    if (transparentIndex >= 0 && transparentIndex + 1 < args.Length)
+    {
+        var hex = args[transparentIndex + 1].TrimStart('#');
+        if (hex.Length == 6 && uint.TryParse(hex, System.Globalization.NumberStyles.HexNumber, null, out var rgb))
+        {
+            PxSharpSettings.TransparentColor = ((byte)(rgb >> 16), (byte)(rgb >> 8), (byte)rgb);
+        }
+        else
+        {
+            Console.Error.WriteLine($"Invalid color format: {args[transparentIndex + 1]}. Use RRGGBB hex format.");
+            return 1;
+        }
+    }
 
     try
     {
@@ -92,15 +108,26 @@ int Validate(string[] args)
 
 int ShowHelp()
 {
+    // Display embedded logo
+    PxSharpSettings.TransparentColor = (255, 0, 0); // logo uses red as transparent
+    using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PxSharp.Cli.pxsharp.bmp");
+    if (stream != null)
+    {
+        var logo = PxImage.Load(stream);
+        logo.WriteAnsi(Console.Out);
+        Console.WriteLine();
+    }
+
     Console.WriteLine("pxsharp - Render BMP images in the terminal");
     Console.WriteLine();
     Console.WriteLine("Commands:");
-    Console.WriteLine("  preview <file.bmp> [--256]  Render image to terminal");
-    Console.WriteLine("  validate <file.bmp>         Check if BMP is compatible");
-    Console.WriteLine("  help                        Show this help message");
+    Console.WriteLine("  preview <file.bmp> [options]  Render image to terminal");
+    Console.WriteLine("  validate <file.bmp>           Check if BMP is compatible");
+    Console.WriteLine("  help                          Show this help message");
     Console.WriteLine();
     Console.WriteLine("Options:");
-    Console.WriteLine("  --256  Force 256-color mode (auto-detected by default)");
+    Console.WriteLine("  --256                 Force 256-color mode (auto-detected by default)");
+    Console.WriteLine("  --transparent RRGGBB  Set transparent color key (default: FF00FF magenta)");
     return 0;
 }
 

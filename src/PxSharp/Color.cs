@@ -18,10 +18,25 @@ public readonly struct Color : IEquatable<Color>
         A = a;
     }
 
-    public bool IsTransparent => A == 0;
-    public bool IsOpaque => A == 255;
+    public bool IsTransparent
+    {
+        get
+        {
+            var key = PxSharpSettings.TransparentColor;
+            return R == key.R && G == key.G && B == key.B;
+        }
+    }
 
-    public static Color Transparent => new(0, 0, 0, 0);
+    public bool IsOpaque => !IsTransparent;
+
+    public static Color Transparent
+    {
+        get
+        {
+            var key = PxSharpSettings.TransparentColor;
+            return new(key.R, key.G, key.B);
+        }
+    }
 
     public bool Equals(Color other) => R == other.R && G == other.G && B == other.B && A == other.A;
     public override bool Equals(object? obj) => obj is Color other && Equals(other);

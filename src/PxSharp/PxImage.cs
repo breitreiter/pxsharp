@@ -53,6 +53,18 @@ public sealed class PxImage
     }
 
     /// <summary>
+    /// Loads a BMP image from a stream.
+    /// </summary>
+    /// <param name="stream">A stream containing 24-bit or 32-bit uncompressed BMP data.</param>
+    /// <returns>A PxImage ready for rendering.</returns>
+    /// <exception cref="InvalidDataException">The stream does not contain a valid or supported BMP.</exception>
+    public static PxImage Load(Stream stream)
+    {
+        var (width, height, pixels) = BmpLoader.Load(stream);
+        return new PxImage(width, height, pixels);
+    }
+
+    /// <summary>
     /// Gets the color of a pixel at the specified coordinates.
     /// </summary>
     public Color GetPixel(int x, int y)
@@ -134,6 +146,7 @@ public sealed class PxImage
         {
             writer.WriteLine(GetAnsiLine(i));
         }
+        writer.Write("\x1b[0m"); // ensure terminal state is fully reset
     }
 
     /// <summary>

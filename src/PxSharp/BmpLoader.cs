@@ -8,6 +8,11 @@ internal static class BmpLoader
             throw new FileNotFoundException($"BMP file not found: {path}", path);
 
         using var stream = File.OpenRead(path);
+        return Load(stream);
+    }
+
+    public static (int width, int height, Color[] pixels) Load(Stream stream)
+    {
         using var reader = new BinaryReader(stream);
 
         // File header (14 bytes)
@@ -58,9 +63,9 @@ internal static class BmpLoader
                 var b = reader.ReadByte();
                 var g = reader.ReadByte();
                 var r = reader.ReadByte();
-                var a = bitsPerPixel == 32 ? reader.ReadByte() : (byte)255;
+                if (bitsPerPixel == 32) reader.ReadByte(); // skip padding/alpha byte
 
-                pixels[destY * width + x] = new Color(r, g, b, a);
+                pixels[destY * width + x] = new Color(r, g, b);
             }
 
             // Skip row padding

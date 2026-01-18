@@ -32,7 +32,9 @@ image.Print(1); Console.WriteLine("  MIT License");
 ## API
 
 ```csharp
-var img = PxImage.Load("file.bmp");
+// Loading
+var img = PxImage.Load("file.bmp");      // from file path
+var img = PxImage.Load(stream);          // from Stream (for embedded resources)
 
 // Dimensions
 img.PixelWidth      // source width in pixels
@@ -41,7 +43,7 @@ img.CharWidth       // output width in characters
 img.CharHeight      // output height in characters (pixels / 2)
 
 // Output
-img.Print(row)      // print a row to stdout (one character high, 2px high)
+img.Print(row)      // print a row to stdout (no newline)
 img.PrintLine(row)  // print a row to stdout (with newline)
 img.WriteAnsi(tw)   // write all rows to TextWriter
 img.GetAnsiLine(i)  // get row as ANSI string
@@ -56,6 +58,36 @@ Auto-detects terminal capability. Override globally:
 PxSharpSettings.ColorMode = ColorMode.TrueColor;   // force 24-bit
 PxSharpSettings.ColorMode = ColorMode.Palette256;  // force 256-color
 ```
+
+## Transparency
+
+Use a **color key** for transparency (like GIF). Pixels matching the key are transparent. Default is magenta (`#FF00FF`):
+
+```csharp
+PxSharpSettings.TransparentColor = (255, 0, 255);  // magenta (default)
+PxSharpSettings.TransparentColor = (255, 0, 0);    // red
+```
+
+## Embedding Images
+
+Embed BMP files as assembly resources for distribution:
+
+```xml
+<!-- In your .csproj -->
+<ItemGroup>
+  <EmbeddedResource Include="logo.bmp" />
+</ItemGroup>
+```
+
+```csharp
+using System.Reflection;
+
+var asm = Assembly.GetExecutingAssembly();
+using var stream = asm.GetManifestResourceStream("MyApp.logo.bmp");
+var logo = PxImage.Load(stream);
+```
+
+Resource name format is `{Namespace}.{Filename}`.
 
 ## License
 

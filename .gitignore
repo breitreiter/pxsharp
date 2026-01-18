@@ -1,0 +1,33 @@
+# Build results
+bin/
+obj/
+out/
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+
+# IDE
+.idea/
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# Rider
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Test results
+TestResults/
+*.trx
+
+# Local dev
+*.local
+.claude/

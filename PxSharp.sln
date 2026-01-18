@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{16EB601A-3AD6-4510-ACFD-49484225F7CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PxSharp", "src\PxSharp\PxSharp.csproj", "{9630440B-A29E-4BBE-BAA2-6B9EA6254B6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PxSharp.TerminalGui", "src\PxSharp.TerminalGui\PxSharp.TerminalGui.csproj", "{BE83FA5B-E806-4039-A270-3B6AD0756B71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PxSharp.Cli", "src\PxSharp.Cli\PxSharp.Cli.csproj", "{8B01BBC9-24E8-4C20-8A35-01E460F03A6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C7E5D044-26AC-476A-BCA6-9F5402342293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PxSharp.Tests", "tests\PxSharp.Tests\PxSharp.Tests.csproj", "{368EFF96-1B1E-450F-971D-3209B5A0437F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{8DFC628F-2602-4B95-8F8A-0169AC0BD0A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateTestAssets", "samples\GenerateTestAssets\GenerateTestAssets.csproj", "{A204037C-3B4F-47E9-8E7E-E9B663A6F0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpectreDemo", "samples\SpectreDemo\SpectreDemo.csproj", "{A4E39426-FEAF-4EB3-91B0-84969B3B427A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9630440B-A29E-4BBE-BAA2-6B9EA6254B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9630440B-A29E-4BBE-BAA2-6B9EA6254B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9630440B-A29E-4BBE-BAA2-6B9EA6254B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9630440B-A29E-4BBE-BAA2-6B9EA6254B6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE83FA5B-E806-4039-A270-3B6AD0756B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE83FA5B-E806-4039-A270-3B6AD0756B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE83FA5B-E806-4039-A270-3B6AD0756B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE83FA5B-E806-4039-A270-3B6AD0756B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B01BBC9-24E8-4C20-8A35-01E460F03A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B01BBC9-24E8-4C20-8A35-01E460F03A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B01BBC9-24E8-4C20-8A35-01E460F03A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B01BBC9-24E8-4C20-8A35-01E460F03A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368EFF96-1B1E-450F-971D-3209B5A0437F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368EFF96-1B1E-450F-971D-3209B5A0437F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368EFF96-1B1E-450F-971D-3209B5A0437F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368EFF96-1B1E-450F-971D-3209B5A0437F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A204037C-3B4F-47E9-8E7E-E9B663A6F0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A204037C-3B4F-47E9-8E7E-E9B663A6F0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A204037C-3B4F-47E9-8E7E-E9B663A6F0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A204037C-3B4F-47E9-8E7E-E9B663A6F0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E39426-FEAF-4EB3-91B0-84969B3B427A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E39426-FEAF-4EB3-91B0-84969B3B427A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E39426-FEAF-4EB3-91B0-84969B3B427A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E39426-FEAF-4EB3-91B0-84969B3B427A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9630440B-A29E-4BBE-BAA2-6B9EA6254B6F} = {16EB601A-3AD6-4510-ACFD-49484225F7CF}
+		{BE83FA5B-E806-4039-A270-3B6AD0756B71} = {16EB601A-3AD6-4510-ACFD-49484225F7CF}
+		{8B01BBC9-24E8-4C20-8A35-01E460F03A6E} = {16EB601A-3AD6-4510-ACFD-49484225F7CF}
+		{368EFF96-1B1E-450F-971D-3209B5A0437F} = {C7E5D044-26AC-476A-BCA6-9F5402342293}
+		{A204037C-3B4F-47E9-8E7E-E9B663A6F0BC} = {8DFC628F-2602-4B95-8F8A-0169AC0BD0A4}
+		{A4E39426-FEAF-4EB3-91B0-84969B3B427A} = {8DFC628F-2602-4B95-8F8A-0169AC0BD0A4}
+	EndGlobalSection
+EndGlobal
